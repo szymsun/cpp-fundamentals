@@ -1,20 +1,36 @@
 #pragma once
 
-int NWD(int lhs, int rhs) {
-    // euclidean implementation
-    int i = 2;
+int NWD(int lhs, int rhs) {  // euclidean implementation
+    if (lhs < 0) {
+        lhs *= -1;
+    }
+    if (rhs < 0) {
+        rhs *= -1;
+    }
+
+    if (rhs == lhs) {
+        return lhs;
+    }
+
     while (rhs != 0) {
-        if (lhs > rhs) {
-            lhs %= rhs;
-            std::swap(lhs, rhs);
-        } else {
-            rhs %= lhs;
-            std::swap(lhs, rhs);
-        }
+        lhs %= rhs;
+
+        std::swap(lhs, rhs);
     }
     return lhs;
 }
 
-int NWW(int lhs, int rhs) {  // kinda lazy but works
+int NWW(int lhs, int rhs) {
+    if (lhs < 0) {
+        lhs *= -1;
+    }
+    if (rhs < 0) {
+        rhs *= -1;
+    }
+    if (rhs == lhs) {
+        return lhs;
+    }
+
+    // kinda lazy but works
     return lhs * rhs / (NWD(lhs, rhs));
 }
